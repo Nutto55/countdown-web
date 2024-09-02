@@ -54,6 +54,12 @@ const countdown = (end: Dayjs) => {
 </script>
 <style lang="css" scoped>
 .countdown-text {
-  color: #ffffff;
+  color: #000000;
+}
+
+@media (prefers-color-scheme: dark) {
+  .countdown-text {
+    color: #ffffff;
+  }
 }
 </style>
