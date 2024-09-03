@@ -16,7 +16,7 @@ import { Howl } from 'howler'
 import dayjs from 'dayjs'
 
 import Countdown from '../components/Countdown.vue'
-import HarryAudio from '@/assets/audio/harry.mp3'
+import BgAudio from '@/assets/audio/bg.mp3'
 import ClickIcon from '@/assets/images/click.png'
 
 const endTime = ref(dayjs('2024-09-31'))
@@ -27,7 +27,7 @@ onMounted(() => {
 
 const setupAudio = () => {
   const audio = new Howl({
-    src: HarryAudio,
+    src: BgAudio,
     autoplay: true,
     loop: true,
     volume: 0.5,
