@@ -1,27 +1,29 @@
 <template>
-  <div class="countdown-text">
+  <div>
     <h2 v-if="isLoading">Loading...</h2>
-    <h1 v-else-if="isOver">Hooray!! 🥳🎉🎉</h1>
-    <h2 v-else>
-      {{ remainingDays }} days {{ remainingHours }} hours {{ remainingMinutes }} minutes
-      {{ remainingSeconds }} seconds
-    </h2>
+    <h1 v-else-if="isOver">{{ endedText }}</h1>
+    <div v-else>
+      <div>{{ eventName }}</div>
+      <h2>
+        {{ remainingDays }} days {{ remainingHours }} hours {{ remainingMinutes }} minutes
+        {{ remainingSeconds }} seconds
+      </h2>
+    </div>
   </div>
 </template>
 <script lang="ts" setup>
-import dayjs, { Dayjs } from 'dayjs'
+import dayjs from '@/libs/dayjs'
 import { onMounted, ref } from 'vue'
 
-const isLoading = ref(true)
-const isOver = ref(false)
-const remainingDays = ref<number | null>(null)
-const remainingHours = ref<number | null>(null)
-const remainingMinutes = ref<number | null>(null)
-const remainingSeconds = ref<number | null>(null)
-const countdownInterval = ref<ReturnType<typeof setInterval> | null>(null)
+interface CountdownItemProps {
+  eventName?: string
+  endedText?: string
+  endTime: dayjs.Dayjs
+}
 
-const props = defineProps({
-  endTime: Dayjs
+const props = withDefaults(defineProps<CountdownItemProps>(), {
+  eventName: 'Ended at:',
+  endedText: 'Finish'
 })
 
 onMounted(() => {
@@ -36,7 +38,15 @@ onMounted(() => {
   }
 })
 
-const countdown = (end: Dayjs) => {
+const isLoading = ref(true)
+const isOver = ref(false)
+const remainingDays = ref<number | null>(null)
+const remainingHours = ref<number | null>(null)
+const remainingMinutes = ref<number | null>(null)
+const remainingSeconds = ref<number | null>(null)
+const countdownInterval = ref<ReturnType<typeof setInterval> | null>(null)
+
+const countdown = (end: dayjs.Dayjs) => {
   const now = dayjs()
   if (end.isBefore(now) && countdownInterval.value) {
     isOver.value = true
@@ -52,14 +62,3 @@ const countdown = (end: Dayjs) => {
   remainingSeconds.value = Math.floor((remainingTime % (1000 * 60)) / 1000)
 }
 </script>
-<style lang="css" scoped>
-.countdown-text {
-  color: #000000;
-}
-
-@media (prefers-color-scheme: dark) {
-  .countdown-text {
-    color: #ffffff;
-  }
-}
-</style>
