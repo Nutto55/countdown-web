@@ -1,4 +1,9 @@
 <template>
+  <metainfo>
+    <template v-slot:title="{ content }">{{
+      content ? `${content} | Freedom Countdown` : `Freedom Countdown`
+    }}</template>
+  </metainfo>
   <n-config-provider :theme="theme.theme">
     <n-space
       vertical

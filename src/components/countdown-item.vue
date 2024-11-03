@@ -1,6 +1,8 @@
 <template>
   <div>
-    <h2 v-if="isLoading">Loading...</h2>
+    <h2 v-if="isLoading">
+      <n-spin size="large" />
+    </h2>
     <h1 v-else-if="isOver">{{ endText }}</h1>
     <div v-else>
       <h3>{{ eventName }}</h3>
@@ -14,6 +16,7 @@
 <script lang="ts" setup>
 import dayjs from '@/libs/dayjs'
 import { onMounted, ref } from 'vue'
+import { NSpin } from 'naive-ui'
 
 interface CountdownItemProps {
   eventName?: string

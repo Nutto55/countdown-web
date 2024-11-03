@@ -5,13 +5,14 @@
         v-if="!isValidCode"
         class="flex flex-col items-center"
       >
-        <h1>Create your countdown</h1>
+        <h1>No countdown yet 😿</h1>
         <n-button
           class="mt-2"
           secondary
           type="primary"
+          size="large"
         >
-          <router-link to="form"> Now! </router-link>
+          <router-link to="form"> Create new </router-link>
         </n-button>
       </div>
       <countdown-item
@@ -20,6 +21,19 @@
         :endText="endText"
         :endTime="endTime"
       />
+    </div>
+    <div
+      v-if="isValidCode"
+      class="fixed bottom-0 right-0 mr-4 mb-4"
+    >
+      <n-button
+        class="mt-2"
+        secondary
+        type="primary"
+        size="large"
+      >
+        <router-link to="form"> Create new </router-link>
+      </n-button>
     </div>
   </div>
 </template>
@@ -34,6 +48,11 @@ import { z } from 'zod'
 import { NButton } from 'naive-ui'
 import { decrypt } from '@/utils/encryption'
 import { DATETIME_FORMAT } from '@/const/datetime'
+import { useMeta } from 'vue-meta'
+
+useMeta({
+  title: 'Home'
+})
 
 const route = useRoute()
 const eventName = ref<string>()
@@ -74,7 +93,6 @@ const configDetails = () => {
 
     isValidCode.value = true
   } catch (error) {
-    console.info(error)
     isValidCode.value = false
   }
 }

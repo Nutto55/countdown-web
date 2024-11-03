@@ -7,4 +7,9 @@
 </template>
 <script lang="ts" setup>
 import FormSection from '@/components/form-section.vue'
+import { useMeta } from 'vue-meta'
+
+useMeta({
+  title: 'Form config'
+})
 </script>
