@@ -16,24 +16,24 @@
         />
       </n-form-item>
       <n-form-item
-        label="Date & Time:"
-        path="datetime"
+        label="End Text:"
+        path="endText"
       >
-        <n-date-picker
-          class="w-full"
-          v-model:formatted-value="formValue.datetime"
-          value-format="yyyy-MM-dd HH:mm:ss"
-          type="datetime"
+        <n-input
+          v-model:value="formValue.endText"
+          placeholder="E.g. Hooray!, Finish, ..."
           clearable
         />
       </n-form-item>
       <n-form-item
-        label="Ended Text:"
-        path="endedText"
+        label="End Time:"
+        path="endTime"
       >
-        <n-input
-          v-model:value="formValue.endedText"
-          placeholder="E.g. Hooray!, Finish, ..."
+        <n-date-picker
+          class="w-full"
+          v-model:formatted-value="formValue.endTime"
+          value-format="yyyy-MM-dd HH:mm:ss"
+          type="datetime"
           clearable
         />
       </n-form-item>
@@ -86,19 +86,20 @@ import {
   type FormRules
 } from 'naive-ui'
 import { ExternalLinkAlt, Copy } from '@vicons/fa'
+import { DATETIME_FORMAT } from '@/const/datetime'
 
-const currentDateTime = dayjs().format('YYYY-MM-DD HH:mm:ss')
+const currentDateTime = dayjs().format(DATETIME_FORMAT)
 const url = ref<string | null>(null)
 
 const isValidForm = ref(true)
 const formRef = ref<FormInst | null>(null)
 const formValue = ref({
-  eventName: 'My Freedom in...',
-  datetime: currentDateTime,
-  endedText: 'Hooray! 🥳'
+  eventName: 'End at',
+  endTime: currentDateTime,
+  endText: 'Finished'
 })
 const rules = ref<FormRules>({
-  datetime: [
+  endTime: [
     {
       required: true,
       message: 'Please input date & time'

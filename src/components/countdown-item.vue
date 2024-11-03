@@ -1,13 +1,13 @@
 <template>
   <div>
     <h2 v-if="isLoading">Loading...</h2>
-    <h1 v-else-if="isOver">{{ endedText }}</h1>
+    <h1 v-else-if="isOver">{{ endText }}</h1>
     <div v-else>
-      <div>{{ eventName }}</div>
-      <h2>
+      <h3>{{ eventName }}</h3>
+      <h1>
         {{ remainingDays }} days {{ remainingHours }} hours {{ remainingMinutes }} minutes
         {{ remainingSeconds }} seconds
-      </h2>
+      </h1>
     </div>
   </div>
 </template>
@@ -17,17 +17,18 @@ import { onMounted, ref } from 'vue'
 
 interface CountdownItemProps {
   eventName?: string
-  endedText?: string
+  endText?: string
   endTime: dayjs.Dayjs
 }
 
 const props = withDefaults(defineProps<CountdownItemProps>(), {
-  eventName: 'Ended at:',
-  endedText: 'Finish'
+  eventName: 'End at',
+  endText: 'Finished'
 })
 
 onMounted(() => {
   const end = props.endTime
+  console.info(end)
   if (!end) {
     isLoading.value = false
   } else {

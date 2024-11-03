@@ -8,7 +8,7 @@
         <n-layout-header class="px-4 py-2">
           <navigation-bar />
         </n-layout-header>
-        <n-layout-content class="p-4">
+        <n-layout-content>
           <main>
             <router-view />
           </main>
