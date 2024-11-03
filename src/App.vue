@@ -1,8 +1,35 @@
 <template>
-  <RouterView />
+  <n-config-provider :theme="theme.theme">
+    <n-space
+      vertical
+      size="large"
+    >
+      <n-layout>
+        <n-layout-header class="px-4 py-2">
+          <navigation-bar />
+        </n-layout-header>
+        <n-layout-content class="p-4">
+          <main>
+            <router-view />
+          </main>
+        </n-layout-content>
+      </n-layout>
+    </n-space>
+    <n-global-style />
+  </n-config-provider>
 </template>
 <script setup lang="ts">
 import { RouterView } from 'vue-router'
-</script>
+import NavigationBar from '@/components/navigation-bar.vue'
+import { useThemeStore } from './stores/theme'
+import {
+  NLayout,
+  NConfigProvider,
+  NSpace,
+  NLayoutHeader,
+  NLayoutContent,
+  NGlobalStyle
+} from 'naive-ui'
 
-<style lang="scss"></style>
+const theme = useThemeStore()
+</script>
