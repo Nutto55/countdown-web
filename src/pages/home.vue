@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-col min-h-dvh justify-center items-center -mt-20 md:-mt-24">
+  <div class="flex flex-col min-h-dvh justify-center items-center -mt-24 md:-mt-28">
     <div>
       <div
         v-if="!isValidCode"
@@ -15,12 +15,13 @@
           <router-link to="form"> Create new </router-link>
         </n-button>
       </div>
-      <countdown-item
-        v-else
-        :eventName="eventName"
-        :endText="endText"
-        :endTime="endTime"
-      />
+      <template v-else>
+        <countdown-item
+          :eventName="eventName"
+          :endText="endText"
+          :endTime="endTime"
+        />
+      </template>
     </div>
     <div
       v-if="isValidCode"
