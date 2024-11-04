@@ -3,19 +3,15 @@
     <h2 v-if="isLoading">
       <n-spin size="large" />
     </h2>
-    <h1 v-else-if="isOver">{{ endText }}</h1>
     <div v-else>
       <h3>{{ eventName }}</h3>
-      <h1>
-        {{ remainingDays }} days {{ remainingHours }} hours {{ remainingMinutes }} minutes
-        {{ remainingSeconds }} seconds
-      </h1>
+      <h1>{{ details }}</h1>
     </div>
   </div>
 </template>
 <script lang="ts" setup>
 import dayjs from '@/libs/dayjs'
-import { onMounted, ref } from 'vue'
+import { computed, onMounted, ref } from 'vue'
 import { NSpin } from 'naive-ui'
 
 interface CountdownItemProps {
@@ -65,4 +61,12 @@ const countdown = (end: dayjs.Dayjs) => {
   remainingMinutes.value = Math.floor((remainingTime % (1000 * 60 * 60)) / (1000 * 60))
   remainingSeconds.value = Math.floor((remainingTime % (1000 * 60)) / 1000)
 }
+
+const details = computed(() => {
+  if (isOver.value) {
+    return props.endText
+  }
+
+  return `${remainingDays.value} days ${remainingHours.value} hours ${remainingMinutes.value} minutes ${remainingSeconds.value} seconds`
+})
 </script>
