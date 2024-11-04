@@ -12,6 +12,11 @@ const router = createRouter({
       path: '/form',
       name: 'form',
       component: Pages.FormDetail
+    },
+    {
+      path: '/:catchAll(.*)*',
+      name: 'not-found',
+      component: Pages.NotFound
     }
   ]
 })
