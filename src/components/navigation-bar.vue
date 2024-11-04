@@ -3,10 +3,13 @@
     justify="space-between"
     align="center"
   >
-    <n-image
-      class="w-28 md:w-36"
-      :src="logo"
-    />
+    <router-link to="/">
+      <n-image
+        class="w-28 md:w-36"
+        :src="logo"
+        preview-disabled
+      />
+    </router-link>
     <n-switch
       v-model:value="isLight"
       size="large"
