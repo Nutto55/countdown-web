@@ -50,13 +50,9 @@ import { NButton } from 'naive-ui'
 import { decrypt } from '@/utils/encryption'
 import { DATETIME_FORMAT } from '@/const/datetime'
 import { useMeta } from 'vue-meta'
-import Logo from '@/assets/images/logo.png'
 
 useMeta({
-  title: 'Home',
-  og: {
-    image: window.location.origin + Logo
-  }
+  title: 'Home'
 })
 
 const route = useRoute()

@@ -10,9 +10,6 @@ import FormSection from '@/components/form-section.vue'
 import { useMeta } from 'vue-meta'
 
 useMeta({
-  title: 'Form config',
-  og: {
-    image: window.location.origin + '/logo.png'
-  }
+  title: 'Form'
 })
 </script>
