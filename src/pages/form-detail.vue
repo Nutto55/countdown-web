@@ -8,12 +8,11 @@
 <script lang="ts" setup>
 import FormSection from '@/components/form-section.vue'
 import { useMeta } from 'vue-meta'
-import Logo from '@/assets/images/logo.png'
 
 useMeta({
   title: 'Form config',
   og: {
-    image: window.location.origin + Logo
+    image: window.location.origin + '/logo.png'
   }
 })
 </script>
