@@ -5,7 +5,7 @@
         v-if="!isValidCode"
         class="flex flex-col items-center"
       >
-        <h1>No countdown yet 😿</h1>
+        <h1>No event yet 😿</h1>
         <n-button
           class="mt-2"
           secondary
