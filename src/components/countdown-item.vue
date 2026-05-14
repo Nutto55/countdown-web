@@ -3,7 +3,10 @@
     <h2 v-if="isLoading">
       <n-spin size="large" />
     </h2>
-    <div v-else>
+    <div
+      v-else
+      class="px-4"
+    >
       <h3>{{ eventName }}</h3>
       <h1>{{ details }}</h1>
     </div>
