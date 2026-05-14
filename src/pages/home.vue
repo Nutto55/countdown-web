@@ -7,7 +7,7 @@
       >
         <h1>No event yet 😿</h1>
         <n-button
-          class="mt-2"
+          class="mt-4"
           secondary
           type="primary"
           size="large"
